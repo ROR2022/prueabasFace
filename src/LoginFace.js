@@ -76,12 +76,15 @@ const LoginFace = () => {
           window.FB.login(function(response) {
             if (response.status === 'connected') {
               console.log('Logged success:..',response);
+              const myToken= response.authResponse?.accessToken;
+              const dataUser = fetch(`https://graph.facebook.com/USER-ID?fields=id,name,email,picture&access_token=${myToken}`);
 
-              window.FB.api("/me", function (response) {
+              console.log('dataUser:..',dataUser);
+              /* window.FB.api("/me", function (response) {
                 console.log("Good to see you, " + response.name + ".");
                 console.log('Response:..',response);
-              });
-              
+              }); */
+
               // Logged into your webpage and Facebook.
             } else {
               console.log('Logged not success:..',response);
