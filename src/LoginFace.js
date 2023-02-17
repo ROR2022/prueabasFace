@@ -1,46 +1,41 @@
 import { useState } from "react";
 import { useLogin, LoginButton } from "react-facebook";
-//import UserConeccted from "./UserConeccted";
-
-
-
-
+import UserConeccted from "./UserConeccted";
 
 const LoginFace = () => {
-  //const [isConnected, setIsConnected] = useState(false);
+  const [isConnected, setIsConnected] = useState(false);
   const { login, isLoading, status, error } = useLogin();
 
   function handleSuccess(response) {
     console.log(response.status);
-    console.log('Resp button:..',response);
+    console.log("Resp button:..", response);
     window.FB.api("/me", function (response2) {
       console.log("Good to see you, " + response2.name + ".");
-      console.log('Response2:..',response2);
+      console.log("Response2:..", response2);
     });
   }
 
   function handleError(error) {
     console.log(error);
   }
-  
 
-   async function handleLogin() {
+  async function handleLogin() {
     try {
       const response = await login({
         scope: "email, public_profile",
         return_scopes: true,
       });
-      //setIsConnected(response.status);
+      setIsConnected(response.status);
       console.log("response:..", response);
       window.FB.api("/me", function (response2) {
         console.log("Good to see you, " + response2.name + ".");
-        console.log('Response2:..',response2);
+        console.log("Response2:..", response2);
       });
       //console.log('profile:..',profile);
     } catch (error) {
       console.log(error.message);
     }
-  } 
+  }
 
   /* const handleMyLogin = () => { 
     window.FB.login(
@@ -65,6 +60,7 @@ const LoginFace = () => {
 
   function handleLogout() {
     window.FB.logout((response) => {
+      setIsConnected(false);
       console.log(response);
       // user is now logged out
     });
@@ -76,15 +72,8 @@ const LoginFace = () => {
       <button onClick={handleLogin} disabled={isLoading}>
         Login via Facebook
       </button>
-      {/* {isConnected && <UserConeccted />} */}
+      {isConnected && <UserConeccted />}
       <button onClick={handleLogout}>LogOut Facebook</button>
-      <LoginButton
-        scope="email, name"
-        onError={handleError}
-        onSuccess={handleSuccess}
-      >
-        Login via Facebook
-      </LoginButton>
     </div>
   );
 };
