@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { useLogin, LoginButton } from "react-facebook";
-import UserConeccted from "./UserConeccted";
+//import { useLogin, LoginButton } from "react-facebook";
+//import UserConeccted from "./UserConeccted";
 
 const LoginFace = () => {
-  const [isConnected, setIsConnected] = useState(false);
-  const { login, isLoading, status, error } = useLogin();
+  //const [isConnected, setIsConnected] = useState(false);
+  //const { login, isLoading, status, error } = useLogin();
 
-  function handleSuccess(response) {
+  /* function handleSuccess(response) {
     console.log(response.status);
     console.log("Resp button:..", response);
     window.FB.api("/me", function (response2) {
@@ -17,9 +17,9 @@ const LoginFace = () => {
 
   function handleError(error) {
     console.log(error);
-  }
+  } */
 
-  async function handleLogin() {
+  /* async function handleLogin() {
     try {
       const response = await login({
         scope: "email, public_profile",
@@ -35,7 +35,7 @@ const LoginFace = () => {
     } catch (error) {
       console.log(error.message);
     }
-  }
+  } */
 
   /* const handleMyLogin = () => { 
     window.FB.login(
@@ -60,20 +60,34 @@ const LoginFace = () => {
 
   function handleLogout() {
     window.FB.logout((response) => {
-      setIsConnected(false);
+      //setIsConnected(false);
       console.log(response);
       // user is now logged out
+    });
+  }
+
+  function checkLoginState() {
+    window.FB.getLoginStatus(function (response) {
+      console.log("Estado de la Conexion:..", response);
+      //statusChangeCallback(response);
     });
   }
 
   return (
     <div>
       LoginFace
-      <button onClick={handleLogin} disabled={isLoading}>
+      {/* <button onClick={handleLogin} disabled={isLoading}>
         Login via Facebook
       </button>
-      {isConnected && <UserConeccted />}
-      <button onClick={handleLogout}>LogOut Facebook</button>
+      {isConnected && <UserConeccted />}*/}
+      <button onClick={checkLoginState}> Login via Facebook</button>
+
+      <button onClick={handleLogout}>LogOut Facebook</button> 
+
+      {/* <fb:login-button
+        scope="public_profile,email"
+        onlogin="checkLoginState();"
+      ></fb:login-button> */}
     </div>
   );
 };
