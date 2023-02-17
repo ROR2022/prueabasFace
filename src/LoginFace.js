@@ -32,6 +32,10 @@ const LoginFace = () => {
       });
       //setIsConnected(response.status);
       console.log("response:..", response);
+      window.FB.api("/me", function (response2) {
+        console.log("Good to see you, " + response2.name + ".");
+        console.log('Response2:..',response2);
+      });
       //console.log('profile:..',profile);
     } catch (error) {
       console.log(error.message);
