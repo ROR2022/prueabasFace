@@ -1,7 +1,8 @@
-import { useLogin } from 'react-facebook';
+import { useLogin, useProfile } from 'react-facebook';
 
 const LoginFace = () => {
-  const { login, status, isLoading, error} = useLogin();
+  const { login, isLoading} = useLogin();
+  const { profile } = useProfile(['id', 'name']);
 
   async function handleLogin() {
     try {
@@ -9,7 +10,8 @@ const LoginFace = () => {
         scope: 'email',
       });
 
-      console.log(response);
+      console.log('response:..',response);
+      console.log('profile:..',profile);
     } catch (error) {
       console.log(error.message);
     }
