@@ -67,10 +67,17 @@ const LoginFace = () => {
   }
 
   function checkLoginState() {
-    window.FB.getLoginStatus(function (response) {
-      console.log("Estado de la Conexion:..", response);
-      //statusChangeCallback(response);
-    });
+    const estado = new Promise ((res,rej)=>{
+
+      window.FB.getLoginStatus(function (response) {
+        console.log("Estado de la Conexion:..", response);
+        return res(response)
+        //statusChangeCallback(response);
+      });
+    })
+
+    console.log('El estado es:..',estado);
+    
   }
 
   return (
