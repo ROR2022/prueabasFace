@@ -1,5 +1,5 @@
 import { useState } from "react";
-//import { useLogin } from "react-facebook";
+import { useLogin } from "react-facebook";
 //import UserConeccted from "./UserConeccted";
 
 
@@ -7,27 +7,25 @@ import { useState } from "react";
 
 
 const LoginFace = () => {
-  const [isConnected, setIsConnected] = useState(false);
-  //const { login, isLoading, status, error } = useLogin();
-  //const { profile } = useProfile(['id', 'name']);
+  //const [isConnected, setIsConnected] = useState(false);
+  const { login, isLoading, status, error } = useLogin();
+  
 
- /*  async function handleLogin() {
+   async function handleLogin() {
     try {
       const response = await login({
         scope: "email, public_profile",
         return_scopes: true,
       });
-      setIsConnected(response.status);
+      //setIsConnected(response.status);
       console.log("response:..", response);
       //console.log('profile:..',profile);
     } catch (error) {
       console.log(error.message);
     }
-  } */
+  } 
 
-  const handleMyLogin = () => {
-
-    
+  /* const handleMyLogin = () => { 
     window.FB.login(
       function (response) {
         if (response.authResponse) {
@@ -46,7 +44,7 @@ const LoginFace = () => {
         return_scopes: true,
       }
     );
-  };
+  }; */
 
   function handleLogout() {
     window.FB.logout((response) => {
@@ -58,7 +56,7 @@ const LoginFace = () => {
   return (
     <div>
       LoginFace
-      <button onClick={handleMyLogin}>
+      <button onClick={handleLogin} disabled={isLoading}>
         Login via Facebook
       </button>
       {/* {isConnected && <UserConeccted />} */}
