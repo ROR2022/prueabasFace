@@ -1,7 +1,7 @@
 import { useLogin, useProfile } from 'react-facebook';
 
 const LoginFace = () => {
-  const { login, isLoading} = useLogin();
+  const { login, isLoading, status, error} = useLogin();
   const { profile } = useProfile(['id', 'name']);
 
   async function handleLogin() {
