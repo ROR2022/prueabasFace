@@ -12,6 +12,7 @@ const LoginFace = () => {
 
   function handleSuccess(response) {
     console.log(response.status);
+    console.log('Resp button:..',response);
   }
 
   function handleError(error) {
@@ -70,7 +71,7 @@ const LoginFace = () => {
       {/* {isConnected && <UserConeccted />} */}
       <button onClick={handleLogout}>LogOut Facebook</button>
       <LoginButton
-        scope="email"
+        scope="email, name"
         onError={handleError}
         onSuccess={handleSuccess}
       >
