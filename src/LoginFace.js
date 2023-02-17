@@ -4,14 +4,7 @@ import { useState } from "react";
 
 
 
-window.fbAsyncInit = function() {
-  window.FB.init({
-    appId      : '933422631180070',
-    cookie     : true,  
-    xfbml      : true,  
-    version    : 'v16.0' 
-  });
-}
+
 
 const LoginFace = () => {
   const [isConnected, setIsConnected] = useState(false);
