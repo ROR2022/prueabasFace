@@ -67,16 +67,27 @@ const LoginFace = () => {
   }
 
   function checkLoginState() {
-    const estado = new Promise ((res,rej)=>{
+    
 
       window.FB.getLoginStatus(function (response) {
         console.log("Estado de la Conexion:..", response);
-        return res(response)
+        if (response.status==='unknown'){
+
+          window.FB.login(function(response) {
+            if (response.status === 'connected') {
+              console.log('Logged success:..',response);
+              // Logged into your webpage and Facebook.
+            } else {
+              console.log('Logged not success:..',response);
+              // The person is not logged into your webpage or we are unable to tell. 
+            }
+          }, {scope: 'public_profile,email'});
+
+        }
         //statusChangeCallback(response);
       });
-    })
-
-    console.log('El estado es:..',estado);
+  
+    
     
   }
 
