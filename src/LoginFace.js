@@ -10,7 +10,8 @@ const LoginFace = () => {
   async function handleLogin() {
     try {
       const response = await login({
-        scope: 'email',
+        scope: 'email, public_profile',
+        return_scopes: true
       });
       setIsConnected(response.status);
       console.log('response:..',response);
