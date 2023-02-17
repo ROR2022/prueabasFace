@@ -20,13 +20,26 @@ const LoginFace = () => {
     }
   }
 
+  function handleLogout() {
+    window.FB.logout((response)=>{
+      console.log(response);
+      // user is now logged out
+    });
+  }
+
+ 
+
   return (
     <div>
       LoginFace
       <button onClick={handleLogin} disabled={isLoading}>
       Login via Facebook
     </button>
-    <UserConeccted/>
+    {isConnected && <UserConeccted/>}
+    
+    <button onClick={handleLogout}>
+        LogOut Facebook
+      </button>
       </div>
   )
 }
