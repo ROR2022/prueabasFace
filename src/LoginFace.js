@@ -13,6 +13,10 @@ const LoginFace = () => {
   function handleSuccess(response) {
     console.log(response.status);
     console.log('Resp button:..',response);
+    window.FB.api("/me", function (response2) {
+      console.log("Good to see you, " + response2.name + ".");
+      console.log('Response2:..',response2);
+    });
   }
 
   function handleError(error) {
