@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useLogin } from "react-facebook";
+import { useLogin, LoginButton } from "react-facebook";
 //import UserConeccted from "./UserConeccted";
 
 
@@ -9,6 +9,14 @@ import { useLogin } from "react-facebook";
 const LoginFace = () => {
   //const [isConnected, setIsConnected] = useState(false);
   const { login, isLoading, status, error } = useLogin();
+
+  function handleSuccess(response) {
+    console.log(response.status);
+  }
+
+  function handleError(error) {
+    console.log(error);
+  }
   
 
    async function handleLogin() {
@@ -61,6 +69,13 @@ const LoginFace = () => {
       </button>
       {/* {isConnected && <UserConeccted />} */}
       <button onClick={handleLogout}>LogOut Facebook</button>
+      <LoginButton
+        scope="email"
+        onError={handleError}
+        onSuccess={handleSuccess}
+      >
+        Login via Facebook
+      </LoginButton>
     </div>
   );
 };
