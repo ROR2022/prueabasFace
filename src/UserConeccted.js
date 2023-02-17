@@ -3,7 +3,7 @@ import { useProfile } from 'react-facebook';
 const UserConeccted = () => {
   const { profile, isLoading, error } = useProfile(['id', 'name']);
 
-  console.log('Profile:..',profile);
+  //console.log('Profile:..',profile);
   return (
     <div>
       UserConeccted
