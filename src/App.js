@@ -3,6 +3,14 @@ import LoginFace from "./LoginFace";
 <FacebookProvider appId="933422631180070"></FacebookProvider> */
 
 function App() {
+  window.fbAsyncInit = function() {
+    window.FB.init({
+      appId      : '933422631180070',
+      cookie     : true,  
+      xfbml      : true,  
+      version    : 'v16.0' 
+    });
+  }
   return (
     
     <div>
