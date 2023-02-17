@@ -9,7 +9,7 @@ const LoginFace = () => {
         scope: 'email',
       });
 
-      console.log(response.status);
+      console.log(response);
     } catch (error) {
       console.log(error.message);
     }
