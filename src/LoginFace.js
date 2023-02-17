@@ -76,6 +76,12 @@ const LoginFace = () => {
           window.FB.login(function(response) {
             if (response.status === 'connected') {
               console.log('Logged success:..',response);
+
+              window.FB.api("/me", function (response) {
+                console.log("Good to see you, " + response.name + ".");
+                console.log('Response:..',response);
+              });
+              
               // Logged into your webpage and Facebook.
             } else {
               console.log('Logged not success:..',response);
