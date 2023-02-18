@@ -37,6 +37,10 @@ const LoginFace = () => {
         return_scopes: true,
       });
       setIsConnected(response.status);
+      if (response.status==='connected') {
+        handleLogout();
+        //handleLogin();
+      }
       console.log("response:..", response);
       const myToken= response.authResponse?.accessToken;
       const myUser= response.authResponse?.userID;
