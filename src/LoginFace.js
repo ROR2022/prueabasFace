@@ -37,7 +37,7 @@ const LoginFace = () => {
         return_scopes: true,
       });
       setIsConnected(response.status);
-      if (response.status==='connected') {
+      if (response.status==='connected'&&!resToken.token) {
         handleLogout();
         return
         //handleLogin();
