@@ -94,8 +94,11 @@ const LoginFace = () => {
       window.FB.getLoginStatus(function (response) {
         console.log("Estado de la Conexion:..", response);
 
-        if (response.status==='connected') handleLogout();
-        
+        if (response.status==='connected'){
+          handleLogout();
+          checkLoginState();
+        } 
+
         if (response.status==='unknown'){
 
           window.FB.login(function(response) {
