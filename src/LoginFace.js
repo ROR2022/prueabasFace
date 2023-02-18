@@ -1,10 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 //import { useLogin, LoginButton } from "react-facebook";
 //import UserConeccted from "./UserConeccted";
 
 const LoginFace = () => {
   //const [isConnected, setIsConnected] = useState(false);
   //const { login, isLoading, status, error } = useLogin();
+  const [resToken, setResToken] = useState(null);
+
+  useEffect(() => {
+    if(resToken) {
+      console.log(resToken);
+    }
+  
+    return 
+  }, [resToken])
+  
 
   /* function handleSuccess(response) {
     console.log(response.status);
@@ -77,8 +87,10 @@ const LoginFace = () => {
             if (response.status === 'connected') {
               console.log('Logged success:..',response);
               const myToken= response.authResponse?.accessToken;
-              fetch(`https://graph.facebook.com/USER-ID?fields=id,name,email,picture&access_token=${myToken}`)
-              .then(response=>console.log('dataUser:..',response))
+              setResToken(myToken);
+
+              //fetch(`https://graph.facebook.com/USER-ID?fields=id,name,email,picture&access_token=${myToken}`)
+              //.then(response=>console.log('dataUser:..',response))
 
               
               /* window.FB.api("/me", function (response) {
