@@ -4,7 +4,7 @@ import axios from 'axios';
 //import UserConeccted from "./UserConeccted";
 
 const LoginFace = () => {
-  //const [isConnected, setIsConnected] = useState(false);
+  const [isConnected, setIsConnected] = useState(false);
   //const { login, isLoading, status, error } = useLogin();
   const [resToken, setResToken] = useState({
     token:'',
@@ -82,7 +82,7 @@ const LoginFace = () => {
 
   function handleLogout() {
     window.FB.logout((response) => {
-      //setIsConnected(false);
+      setIsConnected(false);
       console.log(response);
       // user is now logged out
     });
@@ -103,6 +103,7 @@ const LoginFace = () => {
 
           window.FB.login(function(response) {
             if (response.status === 'connected') {
+              setIsConnected(true);
               console.log('Logged success:..',response);
               const myToken= response.authResponse?.accessToken;
               const myUser= response.authResponse?.userID;
@@ -142,9 +143,12 @@ const LoginFace = () => {
         Login via Facebook
       </button>
       {isConnected && <UserConeccted />}*/}
+      <hr />
       <button onClick={checkLoginState}> Login via Facebook</button>
 
-      <button onClick={handleLogout}>LogOut Facebook</button> 
+      <hr />
+      {isConnected && 
+      <button onClick={handleLogout}>LogOut Facebook</button> }
 
       {/* <fb:login-button
         scope="public_profile,email"
