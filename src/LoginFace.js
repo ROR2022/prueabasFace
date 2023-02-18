@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import axios from 'axios';
 //import { useLogin, LoginButton } from "react-facebook";
 //import UserConeccted from "./UserConeccted";
 
@@ -9,13 +10,21 @@ const LoginFace = () => {
 
   useEffect(() => {
     if(resToken) {
-      console.log(resToken);
+      //console.log(resToken);
+      recuperaDataUser();
     }
   
     return 
   }, [resToken])
   
-
+  const recuperaDataUser = async ()=>{
+    try {
+      const dataUser = await axios.get(`https://graph.facebook.com/USER-ID?fields=id,name,email,picture&access_token=${resToken}`);
+      console.log('dataUser:..',dataUser);
+    } catch (error) {
+      console.log(error);
+    }
+  }
   /* function handleSuccess(response) {
     console.log(response.status);
     console.log("Resp button:..", response);
