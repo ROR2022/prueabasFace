@@ -49,7 +49,13 @@ const LoginFace = () => {
       });
       setIsConnected(response.status);
       console.log("response:..", response);
-      
+      const myToken= response.authResponse?.accessToken;
+      const myUser= response.authResponse?.userID;
+      setResToken({
+              token: myToken,
+              userID: myUser
+      });
+
       /*window.FB.api("/me", function (response2) {
         console.log("Good to see you, " + response2.name + ".");
         console.log("Response2:..", response2);
