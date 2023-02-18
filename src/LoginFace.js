@@ -39,6 +39,7 @@ const LoginFace = () => {
       setIsConnected(response.status);
       if (response.status==='connected') {
         handleLogout();
+        return
         //handleLogin();
       }
       console.log("response:..", response);
