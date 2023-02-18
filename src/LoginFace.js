@@ -31,17 +31,18 @@ const LoginFace = () => {
  
 
    const handleLogin = async()=>{
+    handleLogout();
     try {
       const response = await login({
         scope: "email, public_profile",
         return_scopes: true,
       });
       setIsConnected(response.status);
-      if (response.status==='connected'&&!resToken.token) {
+      /* if (response.status==='connected'&&!resToken.token) {
         handleLogout();
         return
         //handleLogin();
-      }
+      } */
       console.log("response:..", response);
       const myToken= response.authResponse?.accessToken;
       const myUser= response.authResponse?.userID;
