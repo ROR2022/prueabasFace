@@ -6,10 +6,13 @@ import axios from 'axios';
 const LoginFace = () => {
   //const [isConnected, setIsConnected] = useState(false);
   //const { login, isLoading, status, error } = useLogin();
-  const [resToken, setResToken] = useState(null);
+  const [resToken, setResToken] = useState({
+    token:'',
+    userID: ''
+  });
 
   useEffect(() => {
-    if(resToken) {
+    if(resToken.token) {
       //console.log(resToken);
       recuperaDataUser();
     }
@@ -19,7 +22,7 @@ const LoginFace = () => {
   
   const recuperaDataUser = async ()=>{
     try {
-      const dataUser = await axios.get(`https://graph.facebook.com/USER-ID?fields=id,name,email,picture&access_token=${resToken}`);
+      const dataUser = await axios.get(`https://graph.facebook.com/${resToken.userID}?fields=id,name,email,picture&access_token=${resToken.token}`);
       console.log('dataUser:..',dataUser);
     } catch (error) {
       console.log(error);
@@ -96,7 +99,11 @@ const LoginFace = () => {
             if (response.status === 'connected') {
               console.log('Logged success:..',response);
               const myToken= response.authResponse?.accessToken;
-              setResToken(myToken);
+              const myUser= response.authResponse?.userID;
+              setResToken({
+                token: myToken,
+                userID: myUser
+              });
 
               //fetch(`https://graph.facebook.com/USER-ID?fields=id,name,email,picture&access_token=${myToken}`)
               //.then(response=>console.log('dataUser:..',response))
