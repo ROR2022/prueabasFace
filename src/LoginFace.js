@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import axios from 'axios';
-//import { useLogin, LoginButton } from "react-facebook";
+import { useLogin, LoginButton } from "react-facebook";
 //import UserConeccted from "./UserConeccted";
 
 const LoginFace = () => {
   const [isConnected, setIsConnected] = useState(false);
-  //const { login, isLoading, status, error } = useLogin();
+  const { login, isLoading, status, error } = useLogin();
   const [resToken, setResToken] = useState({
     token:'',
     userID: ''
@@ -41,7 +41,7 @@ const LoginFace = () => {
     console.log(error);
   } */
 
-  /* async function handleLogin() {
+   async function handleLogin() {
     try {
       const response = await login({
         scope: "email, public_profile",
@@ -49,15 +49,17 @@ const LoginFace = () => {
       });
       setIsConnected(response.status);
       console.log("response:..", response);
-      window.FB.api("/me", function (response2) {
+      
+      /*window.FB.api("/me", function (response2) {
         console.log("Good to see you, " + response2.name + ".");
         console.log("Response2:..", response2);
-      });
+      });*/
+
       //console.log('profile:..',profile);
     } catch (error) {
       console.log(error.message);
     }
-  } */
+  } 
 
   /* const handleMyLogin = () => { 
     window.FB.login(
@@ -88,9 +90,8 @@ const LoginFace = () => {
     });
   }
 
-  function checkLoginState() {
+  /*function checkLoginState() {
     
-
       window.FB.getLoginStatus(function (response) {
         console.log("Estado de la Conexion:..", response);
 
@@ -122,7 +123,7 @@ const LoginFace = () => {
               }); */
 
               // Logged into your webpage and Facebook.
-            } else {
+           /* } else {
               console.log('Logged not success:..',response);
               // The person is not logged into your webpage or we are unable to tell. 
             }
@@ -132,19 +133,17 @@ const LoginFace = () => {
         //statusChangeCallback(response);
       });
   
-    
-    
-  }
+  }*/
 
   return (
     <div>
       LoginFace
-      {/* <button onClick={handleLogin} disabled={isLoading}>
+       <button onClick={handleLogin} disabled={isLoading}>
         Login via Facebook
       </button>
-      {isConnected && <UserConeccted />}*/}
+      {/*{isConnected && <UserConeccted />}*/}
       <hr />
-      <button onClick={checkLoginState}> Login via Facebook</button>
+      {/* <button onClick={checkLoginState}> Login via Facebook</button> */}
 
       <hr />
       {isConnected && 
