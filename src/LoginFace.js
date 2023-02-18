@@ -77,9 +77,10 @@ const LoginFace = () => {
             if (response.status === 'connected') {
               console.log('Logged success:..',response);
               const myToken= response.authResponse?.accessToken;
-              const dataUser = fetch(`https://graph.facebook.com/USER-ID?fields=id,name,email,picture&access_token=${myToken}`);
+              fetch(`https://graph.facebook.com/USER-ID?fields=id,name,email,picture&access_token=${myToken}`)
+              .then(response=>console.log('dataUser:..',response))
 
-              console.log('dataUser:..',dataUser);
+              
               /* window.FB.api("/me", function (response) {
                 console.log("Good to see you, " + response.name + ".");
                 console.log('Response:..',response);
